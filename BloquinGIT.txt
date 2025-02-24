@@ -1,0 +1,74 @@
+O Git é um sistema de controle de versão que permite acompanhar as alterações no código-fonte de um projeto ao longo do tempo. Ele é essencial para o desenvolvimento de software, pois possibilita:
+✅ Rastrear mudanças no código.
+✅ Trabalhar em equipe sem sobrescrever arquivos.
+✅ Criar versões diferentes do projeto.
+✅ Reverter para versões anteriores caso algo dê errado.
+
+O que é um Repositório?
+Um repositório Git é um diretório que contém todos os arquivos do projeto e um histórico das suas mudanças. Ele pode ser:
+
+Local: Existe apenas no seu computador. Criado com git init.
+Remoto: Armazenado em servidores como GitHub e acessado via git clone.
+
+
+Guia Completo de Comandos Git
+
+Configurações iniciais para definição do GIT
+
+git config --global user.name "VITAOGATAO"
+git config --global user.email "mateuszinfera@gmail.com"
+
+
+Verificar as configurações atuais do GIT
+
+git config --list
+
+Com isso, temos tudo necessário para iniciar um repositório ou criar
+
+Para iniciar um repositório do GIT 
+
+git init 
+
+Para clonar um repositório que já existe remotamente no GitHub
+
+git clone <URL.git>
+
+Caso você queira adicionar um arquivo específico no GitHub, seria somente usar o comando 
+
+git add nome_arquivo.ext
+
+Também é possível adicionar todos os arquivos modificados 
+
+git add . 
+
+Também existe um comando para verificar os arquivos que foram modificados, criados ou apagados 
+
+git status
+
+Com tudo isso feito, podemos salvar os arquivos realizando um commit 
+
+git commit -m "descrição da modificação"
+
+Com isso podemos fazer o envio total das alterações para o repositório remoto 
+
+git push origin <branch>
+
+
+
+COMANDOS A MAIS:
+
+Verificar o histórico de commits
+
+git log 
+
+Para baixar as informações do repositório remoto sem mesclar as informações do repositório remoto com o local 
+
+git fetch 
+
+E para mesclar as informações 
+
+git pull 
+
+
+
+
