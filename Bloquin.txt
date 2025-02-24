@@ -300,3 +300,11 @@ begin
 end;
 
 Vantagem: Permite que a classe filha execute código da classe pai antes ou depois da sua própria implementação.
+
+
+CÓDIGO DE STATUS
+
+A - Aguardando para iniciar
+C - Consulta em andamento por alguma maquina e ou usuario
+O - Consulta realizada com sucesso
+E - Houve algum erro na consulta analise 
