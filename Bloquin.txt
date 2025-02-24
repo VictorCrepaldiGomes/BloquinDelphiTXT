@@ -1,0 +1,302 @@
+UNIT - seria um módulo de código, usado para organizar a lógica do programa em blocos menores, sendo muito utilizado para manutenção e reuso de código
+
+ESTRUTURA - Cada UNIT tem duas seções principais
+
+- INTERFACE: Onde você declara as coisas que quer que as outras units possam ver e usar como classes métodos e constantes por exemplo 
+
+- IMPLEMENTATION: Onde você realize o trabalho, ou seja, onde você escreve o código declarado na interface
+
+UNIT INICIAL - Em projetos Delphi, existe uma unit principal, geralmente chamada de Project1.dpr, que contém o bloco begin, end inicial do programa, onde o projeto começa a rodar 
+
+A cláusula uses permite que você importe funcionalidades de outras units ou bibliotecas, System.SysUtils é uma unit comum, fornecendo funções de sistema e manipulação de strings.
+
+TYPE - Usada para criar novos tipos, isso pode ser classes, registros enums e etc
+
+Nessa parte, já seria interessante saber oque seria os tipos de dados que são usados para armazenar valores, como números, textos, datas e booleanos 
+
+String: Usado para armazenar texto. Pode conter letras, números e símbolos.
+
+Length(Nome);      // Retorna o tamanho da string
+Copy(Nome, 1, 3);  // Copia parte da string
+Pos('o', Nome);    // Retorna a posição de um caractere
+UpperCase(Nome);   // Converte para maiúsculas
+LowerCase(Nome);   // Converte para minúsculas
+
+Interger: Usado para número inteiros, isso não significa que não armazene números negativos, mas sim um número inteiro sem casas decimais, ou seja, por exemplo: 1000, 2000, 2434 e etc 
+
+var
+  Idade: Integer;
+begin
+  Idade := 25;
+  Writeln('Idade: ', Idade);
+end.
+
+Real: Usado para armazenar número com casas decimais, ou seja, números quebrados, por exemplo 45.3453 tanto positivos quanto negativos. É importante saber também que o separador decimal no delphi seria . e não virgula 
+
+var
+  Preco: Real;
+begin
+  Preco := 99.99;
+  Writeln('Preço: ', Preco:0:2); // Exibe com 2 casas decimais
+end.
+
+Boolean: Serve para armazenar um tipo de dado que seria False ou True, ou seja, falso ou positivo, muito usado em condições IF e Else
+
+var
+  MaiorDeIdade: Boolean;
+begin
+  MaiorDeIdade := True;
+  if MaiorDeIdade then
+    Writeln('Você é maior de idade!')
+  else
+    Writeln('Você é menor de idade!');
+end.
+
+Char: Diferente do string, char armazena somente um caractere 
+
+var
+  Letra: Char;
+begin
+  Letra := 'A';
+  Writeln('Letra escolhida: ', Letra);
+end.
+
+Date e Time (Data e hora) 
+
+TDateTima, que armazena datas e horários 
+
+A data é armazenada como um número real, onde a parte inteira representa os dias desde 30/12/1899 e a parte decimal representa as horas
+
+uses
+  SysUtils;
+var
+  Hoje: TDateTime;
+begin
+  Hoje := Now;  // Retorna a data e hora atuais
+  Writeln('Hoje é: ', DateToStr(Hoje)); // Converte para string
+end.
+
+Funções úteis 
+
+  DateToStr(Now);  // Retorna a data como string
+  TimeToStr(Now);  // Retorna a hora como string
+  IncDay(Now, 5);  // Adiciona 5 dias à data atual
+  IncHour(Now, 2); // Adiciona 2 horas ao horário atual
+
+Variants: Pode armazenar qualquer tipo de dados, ou seja, string, real, charts, entre outros 
+
+Procedure: é sum subprograma que executa uma ação mas não retorna um valor diretamente, semelhante a function mas não precisa retornar um resultado 
+
+procedure ExibirMensagem;
+begin
+  Writeln('Olá, esta é uma procedure!');
+end;
+
+begin
+  ExibirMensagem; // Chamando a procedure
+end.
+
+Function: Também seria um subprograma que executa uma ação e retorna um valor obrigatoriamente 
+
+function SomaDoisNumeros: Integer;
+begin 
+  Result := 5 + 3; // Retorna a soma
+end;
+
+begin
+  Writeln('Resultado: ', SomaDoisNumeros);
+end.
+
+
+Característica			procedure		function
+Retorna um valor?		❌ Não			✅ Sim
+Uso principal			Executar ações		Executar cálculos ou retornar dados
+Sintaxe				procedure Nome;		function Nome: Tipo;
+
+
+Laços de execução (FOR, WHILE, REPEAT)
+
+FOR: Quando se sabe exatamente quantas vezes a repetição deve ocorrer, tanto do começo, quanto do final 
+
+SINTAXE:
+ 
+for i := 1 to 10 do
+begin
+  ShowMessage(IntToStr(i));
+end;
+
+Para fazer o processo ao contrário
+
+for i := 10 downto 1 do
+begin
+  ShowMessage(IntToStr(i));
+end;
+
+WHILE: Quando não se sabe previamente quantas vezes a repetição deve ocorrer e a condição de parada é avaliada antes de cada iteração. Caso a condição seja falsa no início, o loop não executa nem uma vez
+
+SINTAXE:
+
+var
+  x: Integer;
+begin
+  x := 1;
+  while x <= 5 do
+  begin
+    ShowMessage(IntToStr(x));
+    Inc(x); // Incrementa x para evitar loop infinito
+  end;
+end;
+ 
+REPEAT: Quando não se sabe previamente quantas vezes a repetição ocorrerá e a condição de parada é avaliada depois de cada iteração.
+Executa pelo menos uma vez, pois a condição é verificada no final.
+Continua repetindo até que a condição seja verdadeira (diferente do while, que repete enquanto for falsa).
+
+SINTAXE: 
+
+var
+  x: Integer;
+begin
+  x := 1;
+  repeat
+    ShowMessage(IntToStr(x));
+    Inc(x);
+  until x > 5;
+end;
+
+
+POO 
+
+MÉTODO OVERLOAD
+
+USO: Usado para criar múltiplas versões de um método com o mesmo nome, mas parâmetros diferentes
+
+QUANDO USAR: Quando um método precisa aceitar diferentes tipos ou quantidades de parâmetros.
+
+EXEMPLO DE UTILIZAÇÃO: 
+
+type 
+	TCaluladora = class
+	  function Somar(a, b : Integer) : Integer; overload;
+	  function Somar(a, b, c : Integer) : Integer; overload;
+	end;
+
+	function TCalculadora.Somar(a, b : Integer) : Integer;
+	begin
+	  Result := a + b;
+	end;
+	
+	function TCalculadora.Somar(a, b, c : Integer) : Integer;
+	  Result := a + b + c;
+	end;  
+
+
+Vantagem: O código fica mais limpo, sem precisar criar nomes diferentes para funções semelhantes.
+
+MÉTODO OVERRIDE 
+
+USO: Substituir um método de uma classe herdada com uma nova implementação
+
+QUANDO USAR: Quando uma classe filha, precisa modificar o comportamento de um método da classe pai
+
+EXEMPLO DE UTILIZAÇÃO: 
+
+type 
+
+TAnimal = class
+  procedure FazerSom; virtual;
+end;
+
+TCachorro = class(TAnimal)
+  procedure TAnimal.FazerSom; override;
+
+
+procedure TAnimal.FazerSom;
+begin
+ShowMessage('O Animal faz som');
+end;
+
+procedure TCachorro.FAzerSom;
+begin
+ ShowMessage('O cachorro late');
+end;
+
+Vantagem: Permite que classes filhas personalizem o comportamento de métodos herdados.
+
+MÉTODO VIRTUAL 
+
+USO: Indicar que um método pode ser sobrescrito (override) por uma classe filha 
+
+QUANDO USAR: Quando uma classe base define um método que pode ser alterado em subclasses 
+
+type
+
+TAnimal = class
+  procedure EmitirSom; virtual;
+end;
+
+procedure TAnimal.EmitirSom;
+begin
+  ShowMessage('Som genérico de animal');
+end;
+
+
+Vantagem: Permite que subclasses modifiquem métodos sem alterar a classe base.
+
+virtual → Define que um método pode ser sobrescrito.
+override → Indica que um método está sobrescrevendo outro.
+
+MÉTODO ABSTRACT
+
+USO: Definir um método que deve ser implementado pelas classes filhas 
+
+QUANDO USAR: Quando uma classe pai não tem uma implementação específicas e força as classes filhas a implementar esse método 
+
+type
+  TAnimal = class
+    procedure EmitirSom; virtual; abstract;
+  end;
+
+  TCachorro = class(TAnimal)
+    procedure EmitirSom; override;
+  end;
+
+procedure TCachorro.EmitirSom;
+begin
+  ShowMessage('Au au!');
+end;
+
+Vantagem: Força a implementação do método na classe filha, garantindo que cada tipo de animal tenha seu próprio som.
+
+Importante:
+
+Uma classe que contém métodos abstratos não pode ser instanciada diretamente.
+Métodos abstract só podem ser usados em métodos virtual.
+
+INHERITED
+
+USO: Chamar a implementação original de um método na classe base
+
+QUANDO USAR: Quando um método de uma classe filha precisa reutilizar parte do comportamento do método da classe pai 
+
+
+type
+  TAnimal = class
+    procedure EmitirSom; virtual;
+  end;
+
+  TCachorro = class(TAnimal)
+    procedure EmitirSom; override;
+  end;
+
+procedure TAnimal.EmitirSom;
+begin
+  ShowMessage('O animal faz um som.');
+end;
+
+procedure TCachorro.EmitirSom;
+begin
+  inherited; // Chama a versão da classe base
+  ShowMessage('O cachorro late.');
+end;
+
+Vantagem: Permite que a classe filha execute código da classe pai antes ou depois da sua própria implementação.
