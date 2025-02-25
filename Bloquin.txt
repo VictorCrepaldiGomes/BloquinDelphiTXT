@@ -308,3 +308,11 @@ A - Aguardando para iniciar
 C - Consulta em andamento por alguma maquina e ou usuario
 O - Consulta realizada com sucesso
 E - Houve algum erro na consulta analise 
+
+
+
+FORMATAR JSON 
+
+SHIFT + ALT + F
+CTRL + SHIFT + P
+DIGITE FORMAT E SELECIONE
